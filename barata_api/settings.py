@@ -49,9 +49,10 @@ THIRD_PARTY_APPS = [
     "rest_framework",
     "rest_framework_gis",
     "leaflet",
+    "django_filters",
 ]
 
-PROJECT_APPS = ["barata", "wpp"]
+PROJECT_APPS = ["barata", "boundaries"]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + PROJECT_APPS
 

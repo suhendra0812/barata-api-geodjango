@@ -19,3 +19,8 @@ from django.urls import path
 urlpatterns = [
     path('admin/', admin.site.urls),
 ]
+
+admin.site.site_header = "BARATA Admin"
+admin.site.site_title = "BARATA GIS Admin Portal"
+admin.site.index_titile = "Welcome to BARATA Admin Portal"
+

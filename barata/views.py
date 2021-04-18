@@ -10,7 +10,7 @@ from .filters import ShipFilter
 
 
 class ShipViewSet(viewsets.ModelViewSet):
-    queryset = Ship.objects.all()
+    queryset = Ship.objects.all()[:100]
     serializer_class = ShipSerializer
     filter_class = ShipFilter
     filter_backends = [DjangoFilterBackend]

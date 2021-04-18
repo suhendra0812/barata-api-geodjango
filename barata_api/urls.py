@@ -14,13 +14,14 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path("admin/", admin.site.urls),
+    path("", include("barata.urls")),
+    path("", include("boundaries.urls")),
 ]
 
 admin.site.site_header = "BARATA Admin"
 admin.site.site_title = "BARATA GIS Admin Portal"
 admin.site.index_titile = "Welcome to BARATA Admin Portal"
-

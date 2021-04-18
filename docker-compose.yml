@@ -32,6 +32,19 @@ services:
         networks: 
             - barata-api
     
+    barata-client:
+        build:
+            context: ./barata_client
+            dockerfile: Dockerfile.dev
+        container_name: barata_frontend
+        volumes: 
+            - ./app/node_modules
+            - ./barata_client:/app
+        depends_on: 
+            - barata-api
+        networks: 
+            - barata-api
+            
     nginx:
         restart: always
         depends_on: 

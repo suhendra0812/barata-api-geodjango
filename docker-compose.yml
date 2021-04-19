@@ -5,6 +5,7 @@ services:
         build: 
             context: .
             dockerfile: Dockerfile.dev
+        container_name: barata-api
         command: python3 manage.py runserver 0.0.0.0:8000
         volumes: 
             - .:/app
@@ -19,7 +20,7 @@ services:
             - barata-api
     
     postgres-db:
-        image: kartoza/postgis:12.0
+        image: kartoza/postgis:13-3.1
         ports: 
             - 5432:5432
         volumes: 
@@ -28,6 +29,7 @@ services:
             - POSTGRES_USER=${POSTGRES_USER}
             - POSTGRES_PASS=${POSTGRES_PASS}
             - POSTGRES_DBNAME=${POSTGRES_DBNAME}
+        container_name: barata-db
         restart: "on-failure"
         networks: 
             - barata-api
@@ -36,7 +38,7 @@ services:
         build:
             context: ./barata_client
             dockerfile: Dockerfile.dev
-        container_name: barata_frontend
+        container_name: barata-client
         volumes: 
             - ./app/node_modules
             - ./barata_client:/app
@@ -52,6 +54,7 @@ services:
         build:
             context: ./nginx
             dockerfile: Dockerfile.dev
+        container_name: barata-nginx
         ports: 
             - 8080:80
         networks: 
@@ -60,6 +63,7 @@ services:
 networks: 
     barata-api:
         driver: bridge
+        name: barata-network
 
 volumes: 
     postgres_data:

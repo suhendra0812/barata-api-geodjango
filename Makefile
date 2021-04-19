@@ -21,7 +21,7 @@ superuser:
 down-v:
 	docker-compose down -v
 volume:
-	docker volume inspect barata-src_postgres_data
+	docker volume inspect barata-db
 shell:
 	docker-compose exec barata-api python3 manage.py shell
 dbshell:

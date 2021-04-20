@@ -15,16 +15,16 @@ services:
             - .env
         restart: "on-failure"
         depends_on: 
-            - postgres-db
+            - barata-db
         networks: 
-            - barata-api
+            - barata-network
     
-    postgres-db:
+    barata-db:
         image: kartoza/postgis:13-3.1
         ports: 
             - 5432:5432
         volumes: 
-            - postgres_data:/var/lib/postgresql
+            - db-volume:/var/lib/postgresql
         environment: 
             - POSTGRES_USER=${POSTGRES_USER}
             - POSTGRES_PASS=${POSTGRES_PASS}
@@ -32,7 +32,7 @@ services:
         container_name: barata-db
         restart: "on-failure"
         networks: 
-            - barata-api
+            - barata-network
     
     barata-client:
         build:
@@ -45,12 +45,12 @@ services:
         depends_on: 
             - barata-api
         networks: 
-            - barata-api
+            - barata-network
             
     nginx:
         restart: always
         depends_on: 
-            - barata-api
+            - barata-client
         build:
             context: ./nginx
             dockerfile: Dockerfile.dev
@@ -58,13 +58,13 @@ services:
         ports: 
             - 8080:80
         networks: 
-            - barata-api
+            - barata-network
 
 networks: 
-    barata-api:
+    barata-network:
         driver: bridge
         name: barata-network
 
 volumes: 
-    postgres_data:
-        name: barata-volume
+    db-volume:
+        name: db-volume

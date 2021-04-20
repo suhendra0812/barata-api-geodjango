@@ -20,8 +20,6 @@ superuser:
 	docker-compose exec barata-api python3 manage.py createsuperuser
 down-v:
 	docker-compose down -v
-volume:
-	docker volume inspect barata-db
 shell:
 	docker-compose exec barata-api python3 manage.py shell
 dbshell:

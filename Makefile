@@ -26,6 +26,4 @@ shell:
 	docker-compose exec barata-api python3 manage.py shell
 dbshell:
 	docker-compose exec barata-api python3 manage.py dbshell
-sqlsequencereset:
-	docker-compose exec barata-api python3 manage.py sqlsequencereset
 

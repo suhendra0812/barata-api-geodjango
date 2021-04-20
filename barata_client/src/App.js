@@ -2,19 +2,19 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { Icon } from "leaflet";
 import { Alert, Spinner } from "react-bootstrap";
-import { MapContainer, TileLayer, Marker, Circle, Popup } from "react-leaflet";
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import useSWR from "swr";
 import "./App.css";
 
-// export const icon = new Icon({
-//     iconUrl: "leaf-green.png",
-//     shadowUrl: "leaf-shadow.png",
-//     iconSize: [38, 95],
-//     shadowSize: [50, 64],
-//     iconAnchor: [22, 94],
-//     shadowAnchor: [4, 62],
-//     popupAnchor: [-3, -76],
-// })
+export const icon = new Icon({
+    iconUrl: "ship-red.png",
+    shadowUrl: "ship-shadow.png",
+    iconSize: [50, 50],
+    iconAnchor: [0, 0],
+    shadowSize: [60, 60],
+    shadowAnchor: [5, 5],
+    popupAnchor: [0, 0],
+})
 
 const fetcher = (url) => axios.get(url).then((res) => res.data);
 
@@ -61,7 +61,9 @@ const App = () => {
                     onClick={() => {
                         setActiveShip(ship);
                     }}
-                    // icon={icon}
+                    icon={icon}
+                    rotationAngle={30}
+                    rotationOrigin="center"
                 >
                     <Popup
                         position={[
